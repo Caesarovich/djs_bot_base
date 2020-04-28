@@ -5,7 +5,7 @@ const CommandArgumentList = requireUncached('./classes/command_argument_list.js'
 
 const command = {
   name: 'Invite',  // The command's name
-  description: 'Invite Julius Caesar to you server.',  // What the command does
+  description: 'Invite the bot to you server.',  // What the command does
   category: 'Other', // In wich category the command is (Category must exist)
   cmd: 'invite',  // The actual command (Must be lowercase)
   aliases: ['inv'], // A list of aliases
