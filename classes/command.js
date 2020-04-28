@@ -46,7 +46,7 @@ class Command{
 
   async validate(args, msg){
     if (this.owner && msg.member.user !== msg.client.owner){return ['❌ **You\'re not allowed to do that. This command is reserved to my owner.**', 'Don\'t try to use this command.']}
-    if (this.getMissingClientPermissions(msg.me)){return [`🚫 **I am missing the following permissions: ${this.getMissingClientPermissions(msg.me).join(', ')}.**`, 'Please contact an administrator.']}
+    if (this.getMissingClientPermissions(msg.guild.me)){return [`🚫 **I am missing the following permissions: ${this.getMissingClientPermissions(msg.guild.me).join(', ')}.**`, 'Please contact an administrator.']}
     if (this.getMissingPermissions(msg.member)){return [`⛔ **You are missing the following permissions: ${this.getMissingPermissions(msg.member).join(', ')}.**`,'This command is reserved to members having these permissions.']}
 
     const missingsArgument = await this.getMissingArguments(args, msg);
