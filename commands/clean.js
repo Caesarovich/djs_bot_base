@@ -17,7 +17,7 @@ const command = {
   ], // Arguments that can or must be provided
 
   func: async (msg, args) => {  // The function executed on call
-    const amount = Math.floor(Math.ceil(args[0] || 15, 50), 1);
+    const amount = Math.floor(Math.ceil(args[0] ? args[0].value : 15, 50), 1);
 
     msg.channel.bulkDelete(amount).then(messages => {
       msg.channel.send(`**:wastebasket: Cleaned ${messages.size} messages.**`).then(message => {

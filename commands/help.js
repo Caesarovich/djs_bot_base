@@ -93,7 +93,7 @@ const command = {
       msg.channel.send(message);
     } else {  // Help specific command
       for (let [k, command] of Object.entries(Commands)) {
-        if (command.getCmds().includes(args[0])){  // Find matching command or alias
+        if (command.getCmds().includes(args[0].value)){  // Find matching command or alias
           let message = new Discord.MessageEmbed()
             .setAuthor(command.category)
             .setTitle(`**${command.name}**`)
