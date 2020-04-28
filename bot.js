@@ -4,7 +4,8 @@ console.log('[Botr] Starting...');
 
 Discord = require('discord.js');
 fs = require('fs');
-mysql = require('mysql');
+mysql = null;
+
 
 
 // Globals
@@ -91,6 +92,7 @@ reloadBot = function(){
   loadCommands(); 
   // Database
   if (Settings.Database.enabled){
+    mysql = require('mysql');
     DB = mysql.createPool(Settings.Database);
   }
   // Init Modules
