@@ -18,8 +18,11 @@ stopping the process, with only a reload command.
 # Installation
 
 > 1- Create a folder and unpack the base
+>
 > 2- Install Discord.JS v12 in this folder with NPM
+>
 > 3- Edit Settings.json and insert your credentials
+>
 > 4- You are ready to start !
 
 
