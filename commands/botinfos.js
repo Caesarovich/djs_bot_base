@@ -17,9 +17,9 @@ const command = {
   func: async (msg, args) => {  // The function executed on call
     var message = new Discord.MessageEmbed()
       .setTitle('**Bot\'s Informations**')
-      .setDescription('I am a Discord Bot made with [Discord.JS](https://discord.js.org/#/) library. I have been made with the help of cesar\'s lib.')
+      .setDescription('I am a Discord Bot made with [Discord.JS](https://discord.js.org/#/) library. I have been made with the help of [Caesarovich\'s lib](https://github.com/Caesarovich/djs_bot_base).')
       .setThumbnail(Bot.user.displayAvatarURL)
-      .setFooter(`Creator: ${Bot.owner.tag} | Version: ${Settings.Version}`, Bot.owner.displayAvatarURL());
+      .setFooter(`Owner: ${Bot.owner.tag} | Version: ${Settings.Version}`, Bot.owner.displayAvatarURL());
       message['fields'] = [
         {
           name: '__Guilds:__',
