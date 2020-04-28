@@ -1,11 +1,11 @@
 // Bot base by Caesarovich
 
-console.log('[Botr] Starting...');
+console.log('[Bot] Starting...');
 
 Discord = require('discord.js');
 fs = require('fs');
-mysql = null;
-
+mysql = require('mysql');
+path = require('path');
 
 
 // Globals
@@ -26,7 +26,7 @@ requireUncached = function(module) {  // Allow to require a file without caching
 
 function loadSettings(){
   console.log('[Bot] Loading Settings\n')
-  Settings = JSON.parse(fs.readFileSync('./settings.json'));  // Replacing Global Settings
+  Settings = JSON.parse(fs.readFileSync(path.join(__dirname, 'settings.json')));  // Replacing Global Settings
 }
 
 
@@ -34,7 +34,7 @@ function loadSettings(){
 
 function loadModules(){
   var _mods = {};  // Temporary list
-  var files = fs.readdirSync('./modules');  // Get a list of module files
+  var files = fs.readdirSync(path.join(__dirname, './modules'));  // Get a list of module files
   console.log(`[Bot] Loading ${files.length} modules:`);  
 
   files.forEach((v) => {
@@ -65,7 +65,7 @@ function initModules(){
 
 function loadCommands(){  // Refresh Commands
   var _cmds = {};  // Temporary list
-  var files = fs.readdirSync('./commands');  // Get a list of command files
+  var files = fs.readdirSync(path.join(__dirname, 'commands'));  // Get a list of command files
   console.log(`[Bot] Loading ${files.length} commands:`);  
 
   files.forEach((v) => {
@@ -92,7 +92,6 @@ reloadBot = function(){
   loadCommands(); 
   // Database
   if (Settings.Database.enabled){
-    mysql = require('mysql');
     DB = mysql.createPool(Settings.Database);
   }
   // Init Modules
@@ -143,7 +142,7 @@ async function CommandHandler(msg, args) {  // This is the command handler | Alr
 function onMessage(message) {  // On message received or updated
   if (message.channel.type != 'text') return;  // Only working in Guild text Channel
   if (message.author == Bot.user) return;  // Not responding to itself
-  if (message.content.toLowerCase().startsWith(`<@${Bot.user.id}>`)) {Commands['help'].func(message); return;} // Mention to get help
+  if (message.content.toLowerCase().startsWith('<@688417101643513952>')) {Commands['help'].func(message); return;} // Mention to get help
   if (!message.content.toLowerCase().startsWith(Settings.Prefix.toLowerCase())){return;}  // Check for prefix.
 
   var args = message.content.split(' ');  // Split the messages in arguments
