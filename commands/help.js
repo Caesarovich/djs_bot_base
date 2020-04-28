@@ -53,7 +53,7 @@ function _getAliasesStrings(command){
 
 
 function _getUsageString(command, guild){
-  const prefix = guild ? '' : 'c!';
+  const prefix = guild ? '' : Settings.Prefix;
   let str = `**${prefix + command.cmd}**`;
 
   command.arguments.forEach(v => {
@@ -88,7 +88,6 @@ const command = {
       let message = new Discord.MessageEmbed()
         .setTitle('**Commands list**')
         .setDescription('This is a list of available commands. Commands you aren\'t authorised to use may not be visible to you.\nUse `help command` to get help about a specific command.')
-        .setColor('#ffa724')
         message['fields'] = fields;
 
       msg.channel.send(message);
