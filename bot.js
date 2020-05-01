@@ -142,7 +142,7 @@ async function CommandHandler(msg, args) {  // This is the command handler | Alr
 function onMessage(message) {  // On message received or updated
   if (message.channel.type != 'text') return;  // Only working in Guild text Channel
   if (message.author == Bot.user) return;  // Not responding to itself
-  if (message.content.toLowerCase().startsWith('<@688417101643513952>')) {Commands['help'].func(message); return;} // Mention to get help
+  if (message.content.toLowerCase().startsWith(`<@!${Bot.user.id}>`)) {Commands['help'].func(message, []); return;} // Mention to get help
   if (!message.content.toLowerCase().startsWith(Settings.Prefix.toLowerCase())){return;}  // Check for prefix.
 
   var args = message.content.split(' ');  // Split the messages in arguments
