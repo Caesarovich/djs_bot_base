@@ -47,6 +47,9 @@ The passed values (msg and args) represent the message that called the command a
 There are some basic commands and modules included so you can have a look at them. I'll recommend to let the **help** and **reload** command as they are very useful (especially the **reload**).
 
 
+# Events
+
+- `onCommand` (Message, Arguments, Command): Emitted when a command is executed.
 
 /!\ This file is not finished /!\
 
