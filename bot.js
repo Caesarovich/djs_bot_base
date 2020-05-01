@@ -109,7 +109,7 @@ reloadBot();
 
 var coolDownList = {};
 
-async function CommandHandler(msg, args) {  // This is the command handler | Already parsed args must be passed
+CommandHandler = async (msg, args) => {  // This is the command handler | Already parsed args must be passed
   const now = Date.now();
   for (let [_, command] of Object.entries(Commands)){
     if (command.getCmds().includes(args[0])){  // Find matching command or alias
@@ -118,6 +118,7 @@ async function CommandHandler(msg, args) {  // This is the command handler | Alr
         const validate = await command.validate(args.slice(1, args.length), msg);
         if (validate === true){
           console.log(`${msg.member.user.tag} >> Executed command >> ${command.name}`);
+          Bot.emit('onCommand', msg, args, command);
           try {
             await command.func(msg, await command.getArgmuments(args.slice(1, args.length), msg));  // Executes the command's function      
           } catch(error) {  // prevent from crashing bot while developing new commands
