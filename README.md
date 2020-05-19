@@ -29,9 +29,9 @@ stopping the process, with only a reload command.
 > 4- You are ready to start !
 
 
-# Create a commmand
+# Create a command
 
-There are the steps to create a new command:
+These are the steps to create a new command:
 
 > 1- Copy-paste another command in `commands/` and rename it.
 >
@@ -41,6 +41,62 @@ There are the steps to create a new command:
 
 The passed values (msg and args) represent the message that called the command and the arguments parsed by the command handler.
 
+
+# Create a module
+
+## Basics
+
+These are the steps to create a new module:
+
+> 1- Copy-paste another module in `modules/` and rename it.
+>
+> 2- Change the module's name initiated with `new CustomModuleBase` at the top of the file.
+>
+> 3- Put any code tu execute on initialisation within the Module.Init callback.
+
+The passed values (msg and args) represent the message that called the command and the arguments parsed by the command handler.
+
+## Advanced
+
+If your module needs to keep data through a refresh, you will have to use the integrated solution for it. Ex:
+
+```js
+_module.Init = () => {
+  _module.preciousData = _module.__addBackedUpVar('myData', {});
+}
+```
+
+Here we define our module's property `preciousData` with the included solution method `__addBackedUpVar`.
+This method takes two arguments: 
+
+> - The name of the data, wich will be used to save it and retrieve it by the refresh handler.
+>
+> - A default value (What it is on first initialisation);
+
+Then you can just access your data via `_module.preciousData`.
+
+You will most certainly also need to use listeners within your modules. The problem is that if you use the conventionnal way `emitter.on` the listeners will stack during refreshes, wich is really bad. That's why I made an integrated solution for that too !
+Let's see an exemple:
+
+```js
+_module.Init = () => {
+  _module.__addListener(Bot, 'channelDisconnect', (oldState) => {
+    console.log('Someone disconnected from a voicechat !');
+  });
+}
+```
+
+We use the `__addListener` method wich will deal with the refresh handler to keep the listeners unstacked. This method takes three arguments:
+
+> - The emitter of the event.
+>
+> - The event's name.
+>
+> - The callback.
+
+Now you know how to make nice modules that doesn't create problems on refresh !
+
+**Note:** Do not override these two methods (`__addListener`, `__addBackedUpVar`)!
 
 # Globals
 
