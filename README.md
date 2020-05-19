@@ -6,6 +6,8 @@ This is kind of a "framework" I made to develop my bots. It provides advanced co
 The main feature is the fact that everything can be added/modified/removed, such as command files or modules, without
 stopping the process, with only a reload command.
 
+**Make sure to read this whole ReadMe !**
+
 
 # Features
 
@@ -125,6 +127,33 @@ I added some custom events to the default ones in Discord.JS. Those events are e
 - `channelJoin` (NewVoiceState): Emmitted when a member joins a channel no matter if the user was in a channel before or not.
 - `channelLeave` (OldVoiceState): Emitted when a user leaves a channel no matter if the user is going in another channel or not.
 - `channelSwitch` (OldVoiceState, NewVoiceState): Emitted when a user switchs channel.
+
+
+# Settings
+
+The settings are a bunch of values that you want to be able to change easily. These includes many values by default (See below). You can add anything you want in the Settings. I recommand putting every password, API keys and sensitive information there. So you just need to be careful with this file when sharing your code. Here are the default settings and their utility:
+
+> **Version** (Optionnal): Your bot's version number. This is only used by the `botinfo` command so if you don't want this command you can just ignore it.
+>
+> **BotToken** (Required): This is your bot's [Discord API Token](https://discord.com/developers/applications).
+>
+> **Prefix** (Required): This is the prefix used by the command handler. 
+>
+> **CommandDelay** (Required): The delay (In seconds) of the command handler. This delay the usage of command for the users to avoid your bot being spammed by the same user.
+>
+> **OwnerID** (Required): This is your [Discord User ID](https://www.youtube.com/watch?v=KAOfKtqE0X0). It's used by the bot to identify who is his owner. Usefull for commands that are reserved to you. You can access "yourself" with `Bot.owner`.
+>
+> **InviteLink** (Optionnal): This is the bot's invite link used by the `invite` command.
+>
+> **SupportInviteLink** (Optionnal): The link to your bot's support server. it's used by the `support` command.
+>
+> **Database** (Optionnal): There you put your database credentials. Leave it disabled if you don't want to connect a database. Be careful to disable commands and modules that uses a database if you disable it !
+>
+> **DisabledModules** (Required): An array of disabled modules. (Leave "GuildSettings" disabled if you don't conenct a database). You must put the module's name initialised with `new CustomModuleBase` and not the module's file name.
+>
+> **DisabledCommands** (Required): An array of disabled commands. As well as for the modules, you put the command's name and not the file name.
+
+**Note:** Settings are dynamicaly refreshed by the refresh command.
 
 /!\ This file is not finished /!\
 
