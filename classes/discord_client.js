@@ -24,4 +24,27 @@ client.on('disconnect', (closeEv) => {
 });
 
 
+
+function channelUpdate(oldState, newState) {
+  if (oldState.channel == null) {
+    client.emit('channelConnect', newState);
+    client.emit('channelJoin', newState);
+  } else {
+    client.emit('channelLeave', oldState);
+    if (newState.channel == null) {
+      client.emit('channelDisconnect', oldState);
+    } else {
+      client.emit('channelJoin', newState);
+      client.emit('channelSwitch', oldState, newState);
+    }
+  }
+}
+
+
+client.on('voiceStateUpdate', (oldState, newState) => {
+  if (oldState.channel !== newState.channel) {
+    channelUpdate(oldState, newState);
+  }
+});
+
 module.exports = client;
