@@ -22,7 +22,7 @@ stopping the process, with only a reload command.
 
 > 1- Create a folder and unpack the base
 >
-> 2- Install Discord.JS v12 in this folder with NPM
+> 2- Install Discord.JS v12 and mysql in this folder with NPM
 >
 > 3- Edit Settings.json and insert your credentials
 >
@@ -42,14 +42,33 @@ There are the steps to create a new command:
 The passed values (msg and args) represent the message that called the command and the arguments parsed by the command handler.
 
 
+# Globals
+
+These are some useful globals that you can reach from everywhere:
+
+- `Bot`: Represents your bot's Discord.JS Client.
+- `Settings`: Represents the parsed value of the `settings.json` file.
+- `Modules`: The list of exported modules.
+- `Commands`: The list of exported commands.
+- `DB`: The MySQL Pool (If you connected a database).
+
+
+
 # Base content
 
 There are some basic commands and modules included so you can have a look at them. I'll recommend to let the **help** and **reload** command as they are very useful (especially the **reload**).
 
 
-# Events
+# Custom Events
+
+I added some custom events to the default ones in Discord.JS. Those events are emitted by the **Bot**
 
 - `onCommand` (Message, Arguments, Command): Emitted when a command is executed.
+- `channelConnect` (NewVoiceState) : Emitted when a member connect to a voice chat (Means he wasn't in any voice chat before).
+- `channelDisonnect` (OldVoiceState) : Emitted when a member disconnected from voice chat (Doesn't switch to another channel, just disconnect).
+- `channelJoin` (NewVoiceState): Emmitted when a member joins a channel no matter if the user was in a channel before or not.
+- `channelLeave` (OldVoiceState): Emitted when a user leaves a channel no matter if the user is going in another channel or not.
+- `channelSwitch` (OldVoiceState, NewVoiceState): Emitted when a user switchs channel.
 
 /!\ This file is not finished /!\
 
