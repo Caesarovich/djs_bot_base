@@ -118,7 +118,7 @@ CommandHandler = async (msg, args) => {  // This is the command handler | Alread
         const validate = await command.validate(args.slice(1, args.length), msg);
         if (validate === true){
           console.log(`${msg.member.user.tag} >> Executed command >> ${command.name}`);
-          Bot.emit('onCommand', msg, args, command);
+          Bot.emit('command', msg, args, command);
           try {
             await command.func(msg, await command.getArgmuments(args.slice(1, args.length), msg));  // Executes the command's function      
           } catch(error) {  // prevent from crashing bot while developing new commands
