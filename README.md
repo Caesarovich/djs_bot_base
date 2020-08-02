@@ -121,7 +121,7 @@ There are some basic commands and modules included so you can have a look at the
 
 I added some custom events to the default ones in Discord.JS. Those events are emitted by the **Bot**
 
-- `onCommand` (Message, Arguments, Command): Emitted when a command is executed.
+- `command` (Message, Arguments, Command): Emitted when a command is executed.
 - `channelConnect` (NewVoiceState) : Emitted when a member connect to a voice chat (Means he wasn't in any voice chat before).
 - `channelDisonnect` (OldVoiceState) : Emitted when a member disconnected from voice chat (Doesn't switch to another channel, just disconnect).
 - `channelJoin` (NewVoiceState): Emmitted when a member joins a channel no matter if the user was in a channel before or not.
